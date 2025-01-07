@@ -15,29 +15,45 @@ public class MainActivity extends AppCompatActivity {
     TextView textV;
     String text;
     int counter;
+    int checkNum;
+    boolean checkSeven;
+    float textSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textV=findViewById(R.id.textV);
+        textSize=textV.getTextSize();
         counter=0;
+        checkSeven=false;
     }
 
     public void pressed(View view) {
+        textV.setTextSize(textSize/2);
         textV.setTextColor(Color.BLACK);
         counter++;
-        if (counter==6)
+        checkNum=counter;
+        while ((checkNum/10>0) || (checkNum==7))
         {
-            text="Enough to click. Go to new start!";
-            textV.setTextColor(Color.GREEN);
-            counter=0;
+            if ((checkNum%10==7) || (checkNum%7==0))
+            {
+                checkSeven=true;
+            }
+            checkNum/=10;
+        }
+        if (checkSeven)
+        {
+            text="BOOM !";
+            textV.setTextColor(Color.RED);
+            textV.setTextSize(textSize*2);
         }
         else
         {
             text="This is a click number: "+counter;
         }
         textV.setText(text);
+        checkSeven=false;
         textV.setVisibility(View.VISIBLE);
     }
 }
