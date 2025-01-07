@@ -1,5 +1,6 @@
 package com.example.ex06031;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -24,8 +25,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pressed(View view) {
+        textV.setTextColor(Color.BLACK);
         counter++;
-        text="This is a click number: "+counter;
+        if (counter==6)
+        {
+            text="Enough to click. Go to new start!";
+            textV.setTextColor(Color.GREEN);
+            counter=0;
+        }
+        else
+        {
+            text="This is a click number: "+counter;
+        }
         textV.setText(text);
         textV.setVisibility(View.VISIBLE);
     }
